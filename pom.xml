@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.enroy.cloud</groupId>
+  <artifactId>boot-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>boot-api</module>
+    <module>boot-web</module>
+  </modules>
+  <packaging>pom</packaging>
+
+  <properties>
+    <app_title>HEADING® DEMO™</app_title>
+    <app_name><![CDATA[HEADING® Qianfan™ Promotion Manager Service]]></app_name>
+    <app_site>http://www.hd123.com</app_site>
+    <app_copyright>
+      <![CDATA[Copyright(C), Shanghai HEADING Information Engineering Co., Ltd, 2018. All rights reserved.]]>
+    </app_copyright>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+
+    <swagger.version>1.5.18</swagger.version>
+    <springfox-swagger.version>2.9.0</springfox-swagger.version>
+
+    <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+    <springboot-dubbo.version>1.0.0</springboot-dubbo.version>
+    <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+    <spring-boot-plugin.version>0.1.0</spring-boot-plugin.version>
+    <spring-cloud.version>Dalston.SR1</spring-cloud.version>
+    <zkclient.version>0.1</zkclient.version>
+    <zookeeper.version>3.4.6</zookeeper.version>
+    <druid.version>1.1.9</druid.version>
+
+    <commons-lang3>3.6</commons-lang3>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!--swagger-->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${springfox-swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${springfox-swagger.version}</version>
+      </dependency>
+
+      <!--spring-->
+      <dependency>
+        <groupId>com.hd123.spring</groupId>
+        <artifactId>spring-boot-plugin</artifactId>
+        <version>${spring-boot-plugin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.dubbo.springboot</groupId>
+        <artifactId>spring-boot-starter-dubbo</artifactId>
+        <version>${springboot-dubbo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!--dataSource-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+
+      <!--常用工具包-->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang3}</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Implementation-Build>${buildNumber}</Implementation-Build>
+                <application_title>${app_name}</application_title>
+                <application_site>${app_site}</application_site>
+                <application_copyright>${app_copyright}</application_copyright>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>buildnumber-maven-plugin</artifactId>
+          <version>1.4</version>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+                <goal>build-info</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
