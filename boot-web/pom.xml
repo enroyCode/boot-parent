@@ -17,12 +17,17 @@
 
   <dependencies>
 
+    <dependency>
+      <groupId>com.enroy.cloud</groupId>
+      <artifactId>boot-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <!--<dependency>-->
-      <!--&lt;!&ndash; Import dependency management from Spring Boot &ndash;&gt;-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-dependencies</artifactId>-->
-      <!--<type>pom</type>-->
-      <!--<scope>import</scope>-->
+    <!--&lt;!&ndash; Import dependency management from Spring Boot &ndash;&gt;-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-dependencies</artifactId>-->
+    <!--<type>pom</type>-->
+    <!--<scope>import</scope>-->
     <!--</dependency>-->
 
     <dependency>
@@ -55,6 +60,8 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
+
+    <!--swagger-->
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>

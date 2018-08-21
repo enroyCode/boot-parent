@@ -9,13 +9,20 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>boot-api</artifactId>
+  <artifactId>boot-core</artifactId>
   <packaging>jar</packaging>
+
   <dependencies>
+    <dependency>
+      <groupId>com.enroy.cloud</groupId>
+      <artifactId>boot-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>
+
 </project>

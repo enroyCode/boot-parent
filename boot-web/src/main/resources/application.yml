@@ -1,0 +1,14 @@
+server:
+  display-name: boot-web
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ${server.display-name}
+
+management:
+  security:
+    enabled: false
+
