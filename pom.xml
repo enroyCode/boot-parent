@@ -40,6 +40,7 @@
     <springboot-dubbo.version>1.0.0</springboot-dubbo.version>
     <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
     <spring-boot-plugin.version>0.1.0</spring-boot-plugin.version>
+    <springloaded>1.2.6.RELEASE</springloaded>
     <spring-cloud.version>Dalston.SR1</spring-cloud.version>
     <zkclient.version>0.1</zkclient.version>
     <zookeeper.version>3.4.6</zookeeper.version>
@@ -53,7 +54,11 @@
 
   <dependencyManagement>
     <dependencies>
-
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>springloaded</artifactId>
+        <version>${springloaded}</version>
+      </dependency>
       <!--swagger-->
       <dependency>
         <groupId>io.springfox</groupId>

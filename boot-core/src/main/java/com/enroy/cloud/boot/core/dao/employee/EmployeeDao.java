@@ -19,6 +19,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EmployeeDao extends BaseDao {
   public Employee get(String mart, String uuid) {
-    return null;
+    Employee employee = new Employee();
+    employee.setCode("111");
+    employee.setName("111");
+    employee.setMart(mart);
+    return employee;
   }
 }
