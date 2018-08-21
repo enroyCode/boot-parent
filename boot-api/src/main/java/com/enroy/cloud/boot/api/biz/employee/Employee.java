@@ -12,9 +12,6 @@ package com.enroy.cloud.boot.api.biz.employee;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * @author zhuchao
  */
@@ -32,5 +29,5 @@ public class Employee {
   /** 是否是超级管理员（只读，服务不允许设置，超级管理员只能初始化） */
   private boolean superAdmin = Boolean.FALSE;
   /** 员工拥有的权限列表 */
-  private Set<String> permissions = new HashSet<>();
+//  private Set<String> permissions = new HashSet<>();
 }

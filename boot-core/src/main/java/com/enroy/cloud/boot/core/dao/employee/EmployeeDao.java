@@ -11,18 +11,18 @@ package com.enroy.cloud.boot.core.dao.employee;
 
 import com.enroy.cloud.boot.api.biz.employee.Employee;
 import com.enroy.cloud.boot.core.dao.base.BaseDao;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author zhuchao
  */
 @Repository
 public class EmployeeDao extends BaseDao {
-  public Employee get(String mart, String uuid) {
-    Employee employee = new Employee();
-    employee.setCode("111");
-    employee.setName("111");
-    employee.setMart(mart);
-    return employee;
+  public Employee get(String mart, String id) {
+    List<Employee> results = jdbcTemplate.query("select * from employee where mart = ? and code = ?", new Object[]{mart, id}, new BeanPropertyRowMapper(Employee.class));
+    return results.isEmpty() ? null : results.get(0);
   }
 }
