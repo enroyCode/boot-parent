@@ -51,6 +51,7 @@
 
     <commons-lang3>3.6</commons-lang3>
     <lombok.version>1.16.20</lombok.version>
+    <fastjson>1.2.47</fastjson>
   </properties>
 
   <dependencyManagement>
@@ -125,6 +126,14 @@
         <artifactId>commons-lang3</artifactId>
         <version>${commons-lang3}</version>
       </dependency>
+
+      <!--json-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson}</version>
+      </dependency>
+
       <!--开发插件-->
       <dependency>
         <groupId>org.projectlombok</groupId>
