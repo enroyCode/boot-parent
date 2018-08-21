@@ -11,15 +11,16 @@ package com.enroy.cloud.boot.web.controller;
 
 import com.enroy.cloud.boot.api.biz.ActionResult;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author zhuchao
  */
 public abstract class BaseController {
   @ApiOperation(value = "测试", notes = "测试")
-  @RequestMapping(value = "/test", method = RequestMethod.GET)
+  @ResponseBody
+  @GetMapping(value = "/test")
   public ActionResult test() {
     return ActionResult.OK;
   }

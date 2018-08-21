@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zhuchao
  */
 @RestController
-@RequestMapping("/employee")
+@RequestMapping(value = "/employee", produces = "application/json;charset=utf-8")
 @Api(tags = "员工服务")
 public class EmployeeController extends BaseController {
 }

@@ -1,6 +1,7 @@
 server:
   display-name: boot-web
   port: 8080
+  contextPath: /boot-web
 
 spring:
   profiles:
@@ -10,5 +11,10 @@ spring:
 
 management:
   security:
+    enabled: false
+
+# 访问安全策略关闭
+security:
+  basic:
     enabled: false
 
