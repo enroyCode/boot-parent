@@ -10,14 +10,19 @@
 package com.enroy.cloud.boot.core.dao.base;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * @author zhuchao
  */
 public class BaseDao implements ApplicationContextAware {
   protected ApplicationContext appCtx;
+
+  @Autowired
+  protected JdbcTemplate jdbcTemplate;
 
   @Override
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

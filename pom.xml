@@ -42,6 +42,7 @@
     <spring-boot-plugin.version>0.1.0</spring-boot-plugin.version>
     <springloaded>1.2.6.RELEASE</springloaded>
     <spring-cloud.version>Dalston.SR1</spring-cloud.version>
+    <spring-jdbc>4.3.9.RELEASE</spring-jdbc>
     <zkclient.version>0.1</zkclient.version>
     <zookeeper.version>3.4.6</zookeeper.version>
 
@@ -113,7 +114,11 @@
         <artifactId>druid</artifactId>
         <version>${druid.version}</version>
       </dependency>
-
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring-jdbc}</version>
+      </dependency>
       <!--常用工具包-->
       <dependency>
         <groupId>org.apache.commons</groupId>
