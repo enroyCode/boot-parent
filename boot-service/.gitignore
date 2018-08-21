@@ -70,7 +70,6 @@ out/
 build/
 
 # other
-*.iws
 
 #.gitignore for java
 *.class
@@ -111,8 +110,6 @@ local.properties
 
 ## .gitignore for intellij
 
-*.iml
-*.ipr
 .idea/
 
 ## .gitignore for linux

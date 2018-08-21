@@ -1,7 +1,7 @@
 server:
-  display-name: boot-web
+  display-name: boot-service
   port: 8080
-  contextPath: /boot-web
+  contextPath: /boot-service
 
 spring:
   profiles:
@@ -17,4 +17,11 @@ management:
 security:
   basic:
     enabled: false
+
+# DataSource
+boot-service:
+  dataSource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/boot
 

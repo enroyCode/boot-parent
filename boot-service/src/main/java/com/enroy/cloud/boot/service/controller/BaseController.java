@@ -7,7 +7,7 @@
  * 修改历史：
  * 2018/8/21 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.web.controller;
+package com.enroy.cloud.boot.service.controller;
 
 import com.enroy.cloud.boot.api.biz.ActionResult;
 import io.swagger.annotations.ApiOperation;

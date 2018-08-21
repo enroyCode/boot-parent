@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-  <bean id="boot-web.objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+  <bean id="boot-service.objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
     <property name="dateFormat">
       <bean class="java.text.SimpleDateFormat">
         <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
@@ -15,11 +15,9 @@
 
   <mvc:annotation-driven>
     <mvc:message-converters register-defaults="true">
-      <bean
-              class="org.springframework.http.converter.StringHttpMessageConverter"/>
-      <bean
-              class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="objectMapper" ref="boot-web.objectMapper"/>
+      <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+      <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="objectMapper" ref="boot-service.objectMapper"/>
       </bean>
     </mvc:message-converters>
   </mvc:annotation-driven>
