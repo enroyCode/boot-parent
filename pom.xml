@@ -63,9 +63,20 @@
       </dependency>
       <!--swagger-->
       <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger2</artifactId>
         <version>${springfox-swagger.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>io.springfox</groupId>
@@ -83,11 +94,6 @@
         <groupId>com.hd123.spring</groupId>
         <artifactId>spring-boot-plugin</artifactId>
         <version>${spring-boot-plugin.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-annotations</artifactId>
-        <version>${swagger.version}</version>
       </dependency>
       <dependency>
         <groupId>io.dubbo.springboot</groupId>
