@@ -7,7 +7,7 @@
  * 修改历史：
  * 2018/8/21 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.api.biz;
+package com.enroy.cloud.boot.api.biz.commons;
 
 import lombok.Getter;
 import lombok.Setter;

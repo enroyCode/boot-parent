@@ -10,7 +10,9 @@
 package com.enroy.cloud.boot.service.controller;
 
 import com.enroy.cloud.boot.api.biz.ActionResult;
+import com.enroy.cloud.boot.service.controller.auth.AuthToken;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,4 +27,6 @@ public abstract class BaseController {
     return ActionResult.OK;
   }
 
+  @Autowired
+  protected AuthToken authToken;
 }

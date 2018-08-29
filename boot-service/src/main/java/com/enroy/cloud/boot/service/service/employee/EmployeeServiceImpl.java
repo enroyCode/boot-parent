@@ -7,7 +7,7 @@
  * 修改历史：
  * 2018/8/21 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.service.service;
+package com.enroy.cloud.boot.service.service.employee;
 
 import com.enroy.cloud.boot.api.biz.employee.Employee;
 import com.enroy.cloud.boot.api.service.employee.EmployeeService;

@@ -18,6 +18,12 @@ security:
   basic:
     enabled: false
 
+dcommons-token:
+  cookieName: boot_jwt
+  secret: xxx
+  expSeconds: 86400
+  refreshIntervalSeconds: 900
+
 # DataSource
 boot-service:
   dataSource:

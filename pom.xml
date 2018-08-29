@@ -13,6 +13,7 @@
   </modules>
   <packaging>pom</packaging>
 
+  <!--版本控制-->
   <scm>
     <tag>HEAD</tag>
     <connection>scm:git:https://github.com/enroyCode/boot-parent.git</connection>
@@ -22,7 +23,7 @@
 
   <properties>
     <app_title>HEADING® DEMO™</app_title>
-    <app_name><![CDATA[HEADING® Qianfan™ Promotion Manager Service]]></app_name>
+    <app_name><![CDATA[HEADING® Boot™ Service]]></app_name>
     <app_site>http://www.hd123.com</app_site>
     <app_copyright>
       <![CDATA[Copyright(C), Shanghai HEADING Information Engineering Co., Ltd, 2018. All rights reserved.]]>
@@ -31,7 +32,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-
+    <servlet-api.version>2.4</servlet-api.version>
     <swagger.version>1.5.18</swagger.version>
     <springfox-swagger.version>2.9.0</springfox-swagger.version>
     <guava.version>20.0</guava.version>
@@ -43,6 +44,8 @@
     <springloaded>1.2.6.RELEASE</springloaded>
     <spring-cloud.version>Dalston.SR1</spring-cloud.version>
     <spring-jdbc>4.3.9.RELEASE</spring-jdbc>
+    <spring.version>4.3.9.RELEASE</spring.version>
+    <spring-security.version>4.2.3.RELEASE</spring-security.version>
     <zkclient.version>0.1</zkclient.version>
     <zookeeper.version>3.4.6</zookeeper.version>
 
@@ -52,6 +55,8 @@
     <commons-lang3>3.6</commons-lang3>
     <lombok.version>1.16.20</lombok.version>
     <fastjson>1.2.47</fastjson>
+    <!--jwt-->
+    <java-jwt.version>2.1.0</java-jwt.version>
   </properties>
 
   <dependencyManagement>
@@ -60,6 +65,20 @@
         <groupId>org.springframework</groupId>
         <artifactId>springloaded</artifactId>
         <version>${springloaded}</version>
+      </dependency>
+
+      <!--jwt-->
+      <dependency>
+        <groupId>com.auth0</groupId>
+        <artifactId>java-jwt</artifactId>
+        <version>${java-jwt.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>${servlet-api.version}</version>
+        <scope>provided</scope>
       </dependency>
       <!--swagger-->
       <dependency>
@@ -114,8 +133,22 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>${spring-security.version}</version>
+      </dependency>
 
-      <!--dataSource-->
       <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>druid</artifactId>

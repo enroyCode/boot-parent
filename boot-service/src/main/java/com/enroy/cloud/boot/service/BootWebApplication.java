@@ -1,7 +1,9 @@
 package com.enroy.cloud.boot.service;
 
+import com.enroy.cloud.boot.api.biz.token.TokenConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -22,5 +24,11 @@ public class BootWebApplication {
   public Docket swaggerDocket() {
     return new Docket(DocumentationType.SWAGGER_2).select()
             .apis(RequestHandlerSelectors.basePackage(getClass().getPackage().getName())).build();
+  }
+
+  @Bean(TokenConfig.BEAN_ID)
+  @ConfigurationProperties(prefix = "dcommons-token")
+  public TokenConfig getTokenConfig() {
+    return new TokenConfig();
   }
 }

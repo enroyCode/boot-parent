@@ -9,6 +9,7 @@
  */
 package com.enroy.cloud.boot.api.biz.employee;
 
+import com.enroy.cloud.boot.api.biz.commons.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class Employee {
+public class Employee extends BaseEntity {
   /** 商场 必填 */
   private String mart;
   /** 编码 */
