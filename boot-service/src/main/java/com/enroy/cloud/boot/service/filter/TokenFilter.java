@@ -12,6 +12,7 @@ package com.enroy.cloud.boot.service.filter;
 import com.enroy.cloud.boot.api.service.token.TokenFilterChecker;
 import com.enroy.cloud.boot.api.service.token.TokenService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -50,8 +51,13 @@ public class TokenFilter implements Filter, ApplicationContextAware {
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-    String pathInfo = httpRequest.getRequestURI().replaceAll("//", "/");
-
+    String pathInfo;
+    String contextPath = applicationContext.getEnvironment().getProperty("server.contextPath");
+    if (StringUtils.isNotBlank(contextPath)) {
+      pathInfo = httpRequest.getRequestURI().replaceAll("//", "/").replace(contextPath, "");
+    } else {
+      pathInfo = httpRequest.getRequestURI().replaceAll("//", "/").replace(contextPath, "");
+    }
     Map<String, TokenFilterChecker> checkers = applicationContext.getBeansOfType(TokenFilterChecker.class);
     for (String key : checkers.keySet()) {
       TokenFilterChecker checker = checkers.get(key);

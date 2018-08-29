@@ -10,17 +10,30 @@
 package com.enroy.cloud.boot.service.service.auth;
 
 import com.enroy.cloud.boot.api.biz.employee.Employee;
+import com.enroy.cloud.boot.api.exception.BusinessException;
 import com.enroy.cloud.boot.api.service.auth.AuthService;
+import com.enroy.cloud.boot.core.dao.auth.AuthDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 /**
  * @author zhuchao
  */
 @Service
 public class AuthServiceImpl implements AuthService {
+  @Autowired
+  private AuthDao authDao;
 
   @Override
   public Employee authenticate(String principle, String password) {
-    return null;
+    Assert.hasLength(principle, "principle");
+    Assert.hasLength(password, "password");
+//    String encodePwd = PasswordUtils.encryptPassword(password);
+    Employee employee = authDao.authenticate(principle, password);
+    if (employee == null) {
+      throw new BusinessException("账户或密码不正确");
+    }
+    return employee;
   }
 }

@@ -21,10 +21,11 @@ import javax.servlet.ServletException;
  */
 @Component
 public class AuthTokenFilterChecker implements TokenFilterChecker {
+
   @Override
   public boolean ignorePath(String path) {
     return path.contains("/about") || path.contains("/auth/login") || path.contains("swagger")
-            || path.startsWith("/v2/api-docs");
+            || path.endsWith("/v2/api-docs");
   }
 
   @Override

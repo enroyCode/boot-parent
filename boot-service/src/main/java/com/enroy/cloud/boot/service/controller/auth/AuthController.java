@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @Api(tags = "登录认证接口")
+@RequestMapping("/auth/")
 public class AuthController extends BaseController {
 
   @Autowired
@@ -52,6 +54,7 @@ public class AuthController extends BaseController {
     try {
       employee = authService.authenticate(loginRequest.getPrinciple(),
                                           loginRequest.getPassword());
+      result.setEmployee(employee);
     } catch (Exception e) {
       throw new BusinessException("用户名或密码错误");
     }
