@@ -1,0 +1,41 @@
+server:
+  display-name: feign-service
+  port: 8180
+  contextPath: /feign-service
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ${server.display-name}
+
+management:
+  security:
+    enabled: false
+
+# 访问安全策略关闭
+security:
+  basic:
+    enabled: false
+
+# DataSource
+fegin-service:
+  dataSource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/boot
+
+# eureka
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    ip-address: localhost
+    non-secure-port: 5005
+    instance-id: feign-service:${eureka.instance.ip-address}:${eureka.instance.non-secure-port}
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
