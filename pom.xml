@@ -11,6 +11,7 @@
     <module>boot-service</module>
     <module>boot-core</module>
     <module>boot-commons</module>
+    <module>boot-feign</module>
   </modules>
   <packaging>pom</packaging>
 
