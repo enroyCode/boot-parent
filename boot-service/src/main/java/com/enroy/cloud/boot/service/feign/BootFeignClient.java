@@ -13,12 +13,13 @@ import com.enroy.cloud.boot.api.biz.ActionResult;
 import com.enroy.cloud.boot.service.config.BootFeignConfiguration;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author zhuchao
  */
 @FeignClient(name = "feign-service", configuration = BootFeignConfiguration.class)
 public interface BootFeignClient {
-  @RequestMapping(value = "")
+  @RequestMapping(value = "/test/about", method = RequestMethod.GET)
   ActionResult about();
 }

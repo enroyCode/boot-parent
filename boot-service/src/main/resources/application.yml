@@ -13,10 +13,12 @@ management:
   security:
     enabled: false
 
-# 访问安全策略关闭
 security:
   basic:
-    enabled: false
+    enabled: true #开启认证
+  user:
+    name: guest
+    password: guest
 
 dcommons-token:
   cookieName: boot_jwt
@@ -36,11 +38,21 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@$localhost:8761/eurekaServer/eureka/  #注册 中心已经开启认证
   instance:
     hostname: localhost
     ip-address: localhost
-    non-secure-port: 5006
+    non-secure-port: 5007
     instance-id: boot-service:${eureka.instance.ip-address}:${eureka.instance.non-secure-port}
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
+
+endpoints:
+  sensitive: false
+  shutdown:
+    enabled: true
+
+feign-service:
+  auth:
+    username: guest
+    password: guest

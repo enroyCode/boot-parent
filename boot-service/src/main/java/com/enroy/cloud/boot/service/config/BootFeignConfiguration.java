@@ -50,8 +50,8 @@ public class BootFeignConfiguration {
 
   @Bean
   public BasicAuthRequestInterceptor basicAuthorizationInterceptor() {
-    String user = env.getProperty("feign-server.auth.username");
-    String password = env.getProperty("feign-server.auth.password");
+    String user = env.getProperty("feign-service.auth.username");
+    String password = env.getProperty("feign-service.auth.password");
     return new BasicAuthRequestInterceptor(user, password);
   }
 

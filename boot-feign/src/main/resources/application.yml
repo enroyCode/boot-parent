@@ -16,7 +16,10 @@ management:
 # 访问安全策略关闭
 security:
   basic:
-    enabled: false
+    enabled: true #开启认证
+  user:
+    name: guest
+    password: guest
 
 # DataSource
 fegin-service:
@@ -31,7 +34,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/eureka  #注册 中心已经开启认证
   instance:
     hostname: localhost
     ip-address: localhost
