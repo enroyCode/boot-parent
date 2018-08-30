@@ -12,7 +12,7 @@ package com.enroy.cloud.boot.commons.biz;
 /**
  * @author zhuchao
  */
-public class BaseEntity extends Entity implements HasUuid {
+public class BaseEntity extends Entity {
   private String code;
   private String name;
 

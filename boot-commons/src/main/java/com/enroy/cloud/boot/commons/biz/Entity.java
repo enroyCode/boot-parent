@@ -12,7 +12,7 @@ package com.enroy.cloud.boot.commons.biz;
 /**
  * @author zhuchao
  */
-public class Entity {
+public class Entity implements HasUuid{
   private String uuid;
 
   public String getUuid() {
