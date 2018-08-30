@@ -9,7 +9,7 @@
  */
 package com.enroy.cloud.boot.api.biz.employee;
 
-import com.enroy.cloud.boot.api.biz.commons.BaseEntity;
+import com.enroy.cloud.boot.commons.biz.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

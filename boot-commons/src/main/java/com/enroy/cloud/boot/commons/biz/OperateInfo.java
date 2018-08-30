@@ -7,7 +7,7 @@
  * 修改历史：
  * 2018/8/21 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.api.biz.commons;
+package com.enroy.cloud.boot.commons.biz;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @Setter
 @Getter
-public class OperateInfo {
+public class OperateInfo implements HasOperateInfo {
   private Date time;
   private String operator;
 }

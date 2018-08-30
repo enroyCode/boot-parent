@@ -13,6 +13,7 @@ import com.enroy.cloud.boot.api.biz.employee.Employee;
 import com.enroy.cloud.boot.api.exception.BusinessException;
 import com.enroy.cloud.boot.api.service.auth.AuthService;
 import com.enroy.cloud.boot.core.dao.auth.AuthDao;
+import com.enroy.cloud.boot.service.utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -29,8 +30,8 @@ public class AuthServiceImpl implements AuthService {
   public Employee authenticate(String principle, String password) {
     Assert.hasLength(principle, "principle");
     Assert.hasLength(password, "password");
-//    String encodePwd = PasswordUtils.encryptPassword(password);
-    Employee employee = authDao.authenticate(principle, password);
+    String encodePwd = PasswordUtils.encryptPassword(password);
+    Employee employee = authDao.authenticate(principle, encodePwd);
     if (employee == null) {
       throw new BusinessException("账户或密码不正确");
     }

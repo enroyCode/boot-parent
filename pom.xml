@@ -10,6 +10,7 @@
     <module>boot-api</module>
     <module>boot-service</module>
     <module>boot-core</module>
+    <module>boot-commons</module>
   </modules>
   <packaging>pom</packaging>
 
