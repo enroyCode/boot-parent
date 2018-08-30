@@ -41,6 +41,9 @@ public class TokenFilter implements Filter, ApplicationContextAware {
   @Autowired
   private TokenService tokenService;
 
+//  @Value("${server.contextPath}")
+//  private String contextPath;
+
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -52,11 +55,11 @@ public class TokenFilter implements Filter, ApplicationContextAware {
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
     String pathInfo;
-    String contextPath = applicationContext.getEnvironment().getProperty("server.contextPath");
+    String contextPath = applicationContext.getEnvironment().getProperty("server.contextPath");//不使用@value注解的原因在于server.contextPath若未配置会报错。
     if (StringUtils.isNotBlank(contextPath)) {
       pathInfo = httpRequest.getRequestURI().replaceAll("//", "/").replace(contextPath, "");
     } else {
-      pathInfo = httpRequest.getRequestURI().replaceAll("//", "/").replace(contextPath, "");
+      pathInfo = httpRequest.getRequestURI().replaceAll("//", "/");
     }
     Map<String, TokenFilterChecker> checkers = applicationContext.getBeansOfType(TokenFilterChecker.class);
     for (String key : checkers.keySet()) {
