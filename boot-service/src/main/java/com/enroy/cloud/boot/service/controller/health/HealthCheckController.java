@@ -18,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 健康检查，当依赖引入security包时会检查该状态
+ *
  * @author zhuchao
  */
 public class HealthCheckController {

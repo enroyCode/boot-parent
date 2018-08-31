@@ -65,7 +65,7 @@ public class AuthController extends BaseController {
     return result;
   }
 
-  @ApiOperation(value = "后台登录", notes = "登录-后台管理")
+  @ApiOperation(value = "feign调用测试", notes = "调用eureka注册的服务测试")
   @PostMapping(value = "login/test")
   @ResponseBody
   public ActionResult testFeign(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -24,11 +24,11 @@
   </scm>
 
   <properties>
-    <app_title>HEADING® DEMO™</app_title>
-    <app_name><![CDATA[HEADING® Boot™ Service]]></app_name>
-    <app_site>http://www.hd123.com</app_site>
+    <app_title>ZHUCHAO® BOOT™</app_title>
+    <app_name><![CDATA[ZHUCHAO® Boot™ Service]]></app_name>
+    <app_site>https://github.com/enroyCode</app_site>
     <app_copyright>
-      <![CDATA[Copyright(C), Shanghai HEADING Information Engineering Co., Ltd, 2018. All rights reserved.]]>
+      <![CDATA[Copyright(C), Shanghai ZHUCHAO Information Engineering Co., Ltd, 2018. All rights reserved.]]>
     </app_copyright>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -109,7 +109,7 @@
         <version>${guava.version}</version>
       </dependency>
 
-      <!--spring-->
+      <!--spring-boot-->
       <dependency>
         <groupId>com.hd123.spring</groupId>
         <artifactId>spring-boot-plugin</artifactId>
@@ -122,6 +122,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!--spring-cloud-->
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
@@ -129,6 +130,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!--spring-->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-beans</artifactId>
@@ -139,6 +141,7 @@
         <artifactId>spring-context</artifactId>
         <version>${spring.version}</version>
       </dependency>
+      <!--spring安全检查-->
       <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-core</artifactId>
@@ -149,12 +152,13 @@
         <artifactId>spring-boot-starter-security</artifactId>
         <version>${spring-boot.version}</version>
       </dependency>
-
+      <!--阿里druid数据源-->
       <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>druid</artifactId>
         <version>${druid.version}</version>
       </dependency>
+      <!--spring-jdbc-->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
@@ -174,7 +178,7 @@
         <version>${fastjson}</version>
       </dependency>
 
-      <!--开发插件-->
+      <!--开发插件，可省略getter，setter，以及sl4j的logger创建代码等-->
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
@@ -187,6 +191,7 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!--maven编译插件，jdk版本1.8-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -211,6 +216,7 @@
             </dependency>
           </dependencies>
         </plugin>
+        <!--maven-jar包插件，定制清单文件-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>

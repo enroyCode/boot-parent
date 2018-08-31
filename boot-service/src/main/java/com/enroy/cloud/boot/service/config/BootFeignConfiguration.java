@@ -25,6 +25,8 @@ import org.springframework.core.env.Environment;
 import java.nio.charset.Charset;
 
 /**
+ * 调用feign配置类
+ *
  * @author zhuchao
  */
 @Configuration
@@ -50,6 +52,11 @@ public class BootFeignConfiguration {
     return Retryer.NEVER_RETRY;
   }
 
+  /**
+   * 调用接口BasicAuth拦截器
+   *
+   * @return
+   */
   @Bean
   public BasicAuthRequestInterceptor basicAuthorizationInterceptor() {
     String user = env.getProperty("feign-service.auth.username");
@@ -57,9 +64,13 @@ public class BootFeignConfiguration {
     return new BasicAuthRequestInterceptor(user, password, Charset.forName("UTF-8"));
   }
 
+  /**
+   * 设置日志
+   *
+   * @return
+   */
   @Bean
   Logger.Level feignLoggerLevel() {
-    //设置日志
     return Logger.Level.FULL;
   }
 }
