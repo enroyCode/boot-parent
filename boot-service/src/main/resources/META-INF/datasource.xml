@@ -59,7 +59,6 @@
     <bean id="boot-service.txManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="boot-service.dataSource"/>
-        <!--<qualifier value="rumba-mq-reliableevent.txManager"/>-->
     </bean>
 
     <tx:annotation-driven transaction-manager="boot-service.txManager"/>
