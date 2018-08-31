@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * @author zhuchao
  * FeignClient 的url属性指定访问路径，通常用作本地调试
- * 若yml配置中使用了context-path属性，则在此处需要添加path属性与之对应
+ * 若application.yml配置中使用了context-path属性，则在此处需要添加path属性与之对应
  */
 @FeignClient(name = "feign-service", path = "/feign-service", configuration = BootFeignConfiguration.class)
 public interface BootFeignClient {

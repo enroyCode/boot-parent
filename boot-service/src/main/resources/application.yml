@@ -47,7 +47,7 @@ eureka:
     ip-address: localhost
     non-secure-port: ${server.port}
     prefer-ip-address: true
-    instance-id: boot-service:${spring.application.name}:${server.port}
+    instance-id: boot-service:${spring.application.name}:${server.port}:@project.version@
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
 

@@ -39,6 +39,6 @@ eureka:
     hostname: localhost
     ip-address: localhost
     non-secure-port: ${server.port}
-    instance-id: feign-service:${eureka.instance.ip-address}:${server.port}
+    instance-id: feign-service:${eureka.instance.ip-address}:${server.port}:@project.version@
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
