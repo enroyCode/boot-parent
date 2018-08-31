@@ -32,18 +32,22 @@ boot-service:
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3306/boot
+  rest:
+    username: guest
+    password: guest
 
 eureka:
   client:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://${security.user.name}:${security.user.password}@$localhost:8761/eurekaServer/eureka/  #注册 中心已经开启认证
+      defaultZone: http://${security.user.name}:${security.user.password}@localhost:8761/eureka/eureka/  #注册 中心已经开启认证
   instance:
     hostname: localhost
     ip-address: localhost
-    non-secure-port: 5007
-    instance-id: boot-service:${eureka.instance.ip-address}:${eureka.instance.non-secure-port}
+    non-secure-port: ${server.port}
+    prefer-ip-address: true
+    instance-id: boot-service:${spring.application.name}:${server.port}
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
 

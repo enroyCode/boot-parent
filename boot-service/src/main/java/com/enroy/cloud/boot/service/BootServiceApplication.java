@@ -18,10 +18,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication
-public class BootWebApplication {
+public class BootServiceApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(BootWebApplication.class, args);
+    SpringApplication.run(BootServiceApplication.class, args);
   }
 
   @Bean

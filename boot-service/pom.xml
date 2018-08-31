@@ -56,27 +56,28 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>org.springframework.cloud</groupId>-->
-      <!--<artifactId>spring-cloud-starter-config</artifactId>-->
+    <!--<groupId>org.springframework.cloud</groupId>-->
+    <!--<artifactId>spring-cloud-starter-config</artifactId>-->
     <!--</dependency>-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-eureka</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>jsr311-api</artifactId>
-          <groupId>javax.ws.rs</groupId>
-        </exclusion>
-      </exclusions>
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<artifactId>jsr311-api</artifactId>-->
+          <!--<groupId>javax.ws.rs</groupId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
     </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-server</artifactId>
-      <version>2.25.1</version>
-    </dependency>
+    <!--eureka需要依赖该eurekaAutoServiceRegistration-->
     <!--<dependency>-->
-      <!--<groupId>org.springframework.cloud</groupId>-->
-      <!--<artifactId>spring-cloud-starter-ribbon</artifactId>-->
+      <!--<groupId>org.glassfish.jersey.core</groupId>-->
+      <!--<artifactId>jersey-server</artifactId>-->
+      <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.cloud</groupId>-->
+    <!--<artifactId>spring-cloud-starter-ribbon</artifactId>-->
     <!--</dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -110,9 +111,9 @@
 
     <!--热部署-->
     <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-devtools</artifactId>-->
-      <!--<optional>true</optional>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-devtools</artifactId>-->
+    <!--<optional>true</optional>-->
     <!--</dependency>-->
 
     <dependency>
@@ -121,6 +122,7 @@
     </dependency>
 
   </dependencies>
+
 
   <build>
     <plugins>
@@ -144,6 +146,15 @@
           </execution>
         </executions>
       </plugin>
+      <!--<plugin>-->
+      <!--<groupId>org.apache.maven.plugins</groupId>-->
+      <!--<artifactId>maven-resources-plugin</artifactId>-->
+      <!--<configuration>-->
+      <!--<delimiters>-->
+      <!--<delimiter>${*}</delimiter>-->
+      <!--</delimiters>-->
+      <!--</configuration>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -177,5 +188,12 @@
         </executions>
       </plugin>
     </plugins>
+    <!--使得yml配置可以读取maven常量-->
+    <resources>
+      <resource>
+        <directory>src/main/resources/</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
   </build>
 </project>

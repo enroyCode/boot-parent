@@ -9,11 +9,13 @@
  */
 package com.enroy.cloud.boot.service.controller.auth;
 
+import com.enroy.cloud.boot.api.biz.ActionResult;
 import com.enroy.cloud.boot.api.biz.employee.Employee;
 import com.enroy.cloud.boot.api.exception.BusinessException;
 import com.enroy.cloud.boot.api.service.auth.AuthService;
 import com.enroy.cloud.boot.api.service.token.TokenService;
 import com.enroy.cloud.boot.service.controller.BaseController;
+import com.enroy.cloud.boot.service.feign.BootFeignClient;
 import com.enroy.cloud.boot.service.service.auth.LoginForAdminRequest;
 import com.enroy.cloud.boot.service.service.auth.LoginForAdminResponse;
 import io.swagger.annotations.Api;
@@ -36,12 +38,12 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "登录认证接口")
 @RequestMapping("/auth/")
 public class AuthController extends BaseController {
-
   @Autowired
   private TokenService tokenService;
-
   @Autowired
   private AuthService authService;
+  @Autowired
+  private BootFeignClient bootFeignClient;
 
   @ApiOperation(value = "后台登录", notes = "登录-后台管理")
   @PostMapping(value = "login/forAdmin")
@@ -61,6 +63,13 @@ public class AuthController extends BaseController {
     // 签发token
     setAuthToken(request, response, employee);
     return result;
+  }
+
+  @ApiOperation(value = "后台登录", notes = "登录-后台管理")
+  @PostMapping(value = "login/test")
+  @ResponseBody
+  public ActionResult testFeign(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    return bootFeignClient.about();
   }
 
   // 签发token

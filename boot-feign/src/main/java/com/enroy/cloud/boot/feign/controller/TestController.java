@@ -10,17 +10,17 @@
 package com.enroy.cloud.boot.feign.controller;
 
 import com.enroy.cloud.boot.api.biz.ActionResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author zhuchao
  */
 @RestController
-@RequestMapping("/test")
+@RequestMapping(value = "/test", produces = "application/json;charset=utf-8")
 public class TestController {
-  @GetMapping("/about")
+  @RequestMapping(value = "/about", method = RequestMethod.GET)
   public ActionResult about() {
     return ActionResult.OK;
   }

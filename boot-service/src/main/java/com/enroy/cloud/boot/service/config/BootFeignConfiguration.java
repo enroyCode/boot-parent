@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+import java.nio.charset.Charset;
+
 /**
  * @author zhuchao
  */
@@ -52,7 +54,7 @@ public class BootFeignConfiguration {
   public BasicAuthRequestInterceptor basicAuthorizationInterceptor() {
     String user = env.getProperty("feign-service.auth.username");
     String password = env.getProperty("feign-service.auth.password");
-    return new BasicAuthRequestInterceptor(user, password);
+    return new BasicAuthRequestInterceptor(user, password, Charset.forName("UTF-8"));
   }
 
   @Bean
