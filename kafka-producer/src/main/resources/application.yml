@@ -1,0 +1,33 @@
+server:
+  display-name: kafka-service
+  port: 8380
+  contextPath: /kafka-service
+
+#============== kafka ===================
+kafka:
+  consumer:
+    zookeeper:
+      connect: 172.17.5.218:2181
+    servers: 172.17.5.218:9092
+    enable:
+      auto:
+        commit: true
+    session:
+      timeout: 6000
+    auto:
+      commit:
+        interval: 100
+      offset:
+        reset: latest
+    topic: test
+    group:
+      id: test
+    concurrency: 10
+  producer:
+    servers: 172.17.5.218:9092
+    retries: 0
+    batch:
+      size: 4096
+    linger: 1
+    buffer:
+      memory: 40960
