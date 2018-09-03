@@ -50,11 +50,17 @@ eureka:
     instance-id: ${spring.application.name}:${eureka.instance.hostname}:${server.port}:@project.version@
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
+    status-page-url-path: ${endpoints.info.path}
+    health-check-url-path: ${endpoints.health.path}
 
 endpoints:
   sensitive: false
   shutdown:
     enabled: true
+  info:
+    path: ${server.contextPath}/info
+  health:
+    path: ${server.contextPath}/health
 
 feign-service:
   auth:

@@ -24,7 +24,7 @@ public class AuthTokenFilterChecker implements TokenFilterChecker {
 
   @Override
   public boolean ignorePath(String path) {
-    return path.contains("/about") || path.contains("/auth/login") || path.contains("swagger")
+    return path.contains("/about") || path.contains("/auth/login") || path.contains("swagger") || path.contains("/info") || path.contains("/health")
             || path.endsWith("/v2/api-docs");
   }
 
