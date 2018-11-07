@@ -1,3 +1,4 @@
+# contextPath 目的在于使用boot的访问url路径没有项目层，添加后访问路径带有项目层
 server:
   display-name: boot-service
   port: 8081
