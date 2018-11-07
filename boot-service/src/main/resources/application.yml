@@ -1,6 +1,6 @@
 server:
   display-name: boot-service
-  port: 8080
+  port: 8081
   contextPath: /boot-service
 
 spring:
@@ -61,7 +61,7 @@ endpoints:
     path: ${server.contextPath}/info
   health:
     path: ${server.contextPath}/health
-
+# feigin调用接口权限使用basic auth模式
 feign-service:
   auth:
     username: guest
