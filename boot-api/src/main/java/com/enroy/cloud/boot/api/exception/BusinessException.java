@@ -18,6 +18,15 @@ import java.text.MessageFormat;
  */
 public class BusinessException extends RuntimeException {
   private static final long serialVersionUID = 6002605632920657041L;
+  private String code;
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
 
   public BusinessException() {
     // Do Nothing
