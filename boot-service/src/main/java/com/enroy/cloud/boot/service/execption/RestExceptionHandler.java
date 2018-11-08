@@ -32,6 +32,7 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @Slf4j
 @ControllerAdvice
 public class RestExceptionHandler {
+  public static final String SC_LOGIN_OUT = "1001";
 
   @ResponseBody
   @ExceptionHandler({BusinessException.class})
@@ -50,7 +51,7 @@ public class RestExceptionHandler {
   @ExceptionHandler({AuthenticationException.class})
   public ActionResult unauthorizedExceptionHandler(HttpServletRequest req, Exception ex) {
     ActionResult response = ActionResult.fail(ex.getLocalizedMessage());
-    response.setCode("1001");//1001定义为登录异常
+    response.setCode(SC_LOGIN_OUT);//1001定义为登录异常
     log.warn(format("请求%s失败", req.getRequestURI()), ex);
     return response;
   }
