@@ -23,4 +23,10 @@ public class Listener {
     log.info("kafka的key: " + record.key());
     log.info("kafka的value: " + record.value().toString());
   }
+
+  @KafkaListener(topics = {"test1"})
+  public void test(ConsumerRecord<?, ?> record) {
+    log.info("kafka的key: " + record.key());
+    log.info("kafka的value: " + record.value().toString());
+  }
 }

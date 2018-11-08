@@ -47,4 +47,20 @@ public class TestController {
       return result;
     }
   }
+  @RequestMapping(value = "/send1", method = RequestMethod.GET)
+  public ActionResult sendKafka1(HttpServletRequest request, HttpServletResponse response) {
+    ActionResult result = new ActionResult();
+    try {
+      String message = request.getParameter("message");
+      log.info("kafka的消息={}", message);
+      kafkaTemplate.send("test", "key1", message);
+      log.info("发送kafka成功.");
+      result.setMessage("发送kafka成功");
+      return result;
+    } catch (Exception e) {
+      log.error("发送kafka失败", e);
+      result.setMessage("发送kafka失败");
+      return result;
+    }
+  }
 }
