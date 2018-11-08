@@ -48,8 +48,8 @@ public class AuthController extends BaseController {
   @ApiOperation(value = "后台登录", notes = "登录-后台管理")
   @PostMapping(value = "login/forAdmin")
   @ResponseBody
-  public LoginForAdminResponse loginForAdmin(HttpServletRequest request, HttpServletResponse response,
-                                             @ApiParam("登录参数") @RequestBody LoginForAdminRequest loginRequest) throws Exception {
+  public ActionResult<LoginForAdminResponse> loginForAdmin(HttpServletRequest request, HttpServletResponse response,
+                                                           @ApiParam("登录参数") @RequestBody LoginForAdminRequest loginRequest) throws Exception {
     LoginForAdminResponse result = new LoginForAdminResponse();
     // 登录认证
     Employee employee;
@@ -62,7 +62,8 @@ public class AuthController extends BaseController {
     }
     // 签发token
     setAuthToken(request, response, employee);
-    return result;
+
+    return new ActionResult<LoginForAdminResponse>(result);
   }
 
   @ApiOperation(value = "feign调用测试", notes = "调用eureka注册的服务测试")

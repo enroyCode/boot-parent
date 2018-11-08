@@ -11,19 +11,29 @@ package com.enroy.cloud.boot.api.biz;
 
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * @author zhuchao
  */
 
 @Data
-@XmlRootElement
 public class ActionResult<T> {
+  public static final ActionResult OK = new ActionResult();
   private boolean success = true;
   private String code;
   private String message;
   private T data;
+
+  public ActionResult() {
+
+  }
+
+  public ActionResult(T data) {
+    this.data = data;
+  }
+
+  public static ActionResult ok() {
+    return OK;
+  }
 
   public static ActionResult fail(String message) {
     ActionResult r = new ActionResult();
@@ -40,12 +50,4 @@ public class ActionResult<T> {
     return r;
   }
 
-  public static final ActionResult OK = new ActionResult();
-
-  public ActionResult ok(T data) {
-    ActionResult<T> result = new ActionResult<>();
-    result.setSuccess(true);
-    result.setData(data);
-    return result;
-  }
 }
