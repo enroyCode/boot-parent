@@ -9,8 +9,7 @@
  */
 package com.enroy.cloud.boot.api.biz;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,13 +17,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author zhuchao
  */
 
-@Getter
-@Setter
+@Data
 @XmlRootElement
-public class ActionResult {
+public class ActionResult<T> {
   private boolean success = true;
   private String code;
   private String message;
+  private T data;
 
   public static ActionResult fail(String message) {
     ActionResult r = new ActionResult();
@@ -42,4 +41,11 @@ public class ActionResult {
   }
 
   public static final ActionResult OK = new ActionResult();
+
+  public ActionResult ok(T data) {
+    ActionResult<T> result = new ActionResult<>();
+    result.setSuccess(true);
+    result.setData(data);
+    return result;
+  }
 }
