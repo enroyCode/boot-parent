@@ -9,6 +9,7 @@
  */
 package com.enroy.cloud.boot.api.biz;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -18,9 +19,13 @@ import lombok.Data;
 @Data
 public class ActionResult<T> {
   public static final ActionResult OK = new ActionResult();
+  @ApiModelProperty(required = true, value = "是否成功")
   private boolean success = true;
+  @ApiModelProperty(value = "错误代码")
   private String code;
+  @ApiModelProperty(value = "错误信息")
   private String message;
+  @ApiModelProperty(value = "返回数据对象")
   private T data;
 
   public ActionResult() {
