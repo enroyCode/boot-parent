@@ -9,15 +9,15 @@
  */
 package com.enroy.cloud.boot.service.service.auth;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author zhuchao
  */
-@Setter
-@Getter
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)//忽略位置属性
 public class LoginForAdminRequest {
   @ApiModelProperty(value = "用户身份表示，如编码或手机号")
   private String principle;
