@@ -13,7 +13,6 @@ import com.enroy.cloud.boot.api.biz.ActionResult;
 import com.enroy.cloud.boot.api.exception.AuthenticationException;
 import com.enroy.cloud.boot.api.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.event.Level;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,27 +37,22 @@ public class RestExceptionHandler {
   @ExceptionHandler({BusinessException.class})
   @ResponseStatus(OK)
   public ActionResult BusinessExceptionHandler(HttpServletRequest req, Exception ex) {
-    return logFailed(req, Level.ERROR, ex);
+    ActionResult response = ActionResult.fail(ex.getLocalizedMessage());
+    if (ex instanceof BusinessException) {
+      response.setCode(((BusinessException) ex).getCode());
+    }
+    log.error(format("请求%s失败", req.getRequestURI()), ex);
+    return response;
   }
 
   @ResponseBody
   @ResponseStatus(UNAUTHORIZED)
-  @ExceptionHandler({
-          AuthenticationException.class})
+  @ExceptionHandler({AuthenticationException.class})
   public ActionResult unauthorizedExceptionHandler(HttpServletRequest req, Exception ex) {
-    return logFailed(req, Level.ERROR, ex);
-  }
-
-  private ActionResult logFailed(HttpServletRequest req, Level level, Throwable tb) {
-    final ActionResult response = ActionResult.fail(tb.getLocalizedMessage());
-
-    if (Level.ERROR.equals(level)) {
-      log.error(format("请求%s失败", req.getRequestURI()), tb);
-    } else if (Level.WARN.equals(level)) {
-      log.warn(format("请求%s失败", req.getRequestURI()), tb);
-    } else {
-      throw new IllegalArgumentException("参数level只支持ERROR和WARN");
-    }
+    ActionResult response = ActionResult.fail(ex.getLocalizedMessage());
+    response.setCode("1001");//1001定义为登录异常
+    log.warn(format("请求%s失败", req.getRequestURI()), ex);
     return response;
   }
+
 }
