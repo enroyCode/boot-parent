@@ -9,7 +9,6 @@
  */
 package com.enroy.cloud.boot.service.execption;
 
-import com.alibaba.fastjson.JSON;
 import com.enroy.cloud.boot.api.biz.ActionResult;
 import com.enroy.cloud.boot.api.exception.AuthenticationException;
 import com.enroy.cloud.boot.api.exception.BusinessException;
@@ -39,9 +38,7 @@ public class RestExceptionHandler {
   @ExceptionHandler({BusinessException.class})
   @ResponseStatus(OK)
   public ActionResult BusinessExceptionHandler(HttpServletRequest req, Exception ex) {
-    final ActionResult response = logFailed(req, Level.WARN, ex);
-    print(response, Level.WARN);
-    return response;
+    return logFailed(req, Level.ERROR, ex);
   }
 
   @ResponseBody
@@ -49,9 +46,7 @@ public class RestExceptionHandler {
   @ExceptionHandler({
           AuthenticationException.class})
   public ActionResult unauthorizedExceptionHandler(HttpServletRequest req, Exception ex) {
-    final ActionResult response = logFailed(req, Level.WARN, ex);
-    print(response, Level.WARN);
-    return response;
+    return logFailed(req, Level.ERROR, ex);
   }
 
   private ActionResult logFailed(HttpServletRequest req, Level level, Throwable tb) {
@@ -66,15 +61,4 @@ public class RestExceptionHandler {
     }
     return response;
   }
-
-  private void print(ActionResult response, Level level) {
-    if (Level.ERROR.equals(level)) {
-      log.error(JSON.toJSONString(response));
-    } else if (Level.WARN.equals(level)) {
-      log.warn(JSON.toJSONString(response));
-    } else {
-      throw new IllegalArgumentException("参数level只支持ERROR和WARN");
-    }
-  }
-
 }
