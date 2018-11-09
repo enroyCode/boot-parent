@@ -10,21 +10,15 @@
 package com.enroy.cloud.boot.api.biz.employee;
 
 import com.enroy.cloud.boot.commons.biz.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author zhuchao
  */
-@Setter
-@Getter
+@Data
 public class Employee extends BaseEntity {
   /** 商场 必填 */
   private String mart;
-  /** 编码 */
-  private String code;
-  /** 名称 */
-  private String name;
   /** 密码 */
   private String password;
   /** 是否是超级管理员（只读，服务不允许设置，超级管理员只能初始化） */
