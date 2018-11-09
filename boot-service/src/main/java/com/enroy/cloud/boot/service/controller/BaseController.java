@@ -9,14 +9,10 @@
  */
 package com.enroy.cloud.boot.service.controller;
 
-import com.enroy.cloud.boot.api.biz.ActionResult;
 import com.enroy.cloud.boot.api.biz.employee.Employee;
 import com.enroy.cloud.boot.service.controller.auth.AuthToken;
-import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.security.auth.login.LoginException;
 
@@ -24,13 +20,6 @@ import javax.security.auth.login.LoginException;
  * @author zhuchao
  */
 public abstract class BaseController {
-  @ApiOperation(value = "测试", notes = "测试")
-  @ResponseBody
-  @GetMapping(value = "/test")
-  public ActionResult test() {
-    return ActionResult.OK;
-  }
-
   @Autowired
   protected AuthToken authToken;
 
