@@ -10,12 +10,14 @@
 package com.enroy.cloud.boot.service.controller;
 
 import com.enroy.cloud.boot.api.biz.employee.Employee;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
  * @author zhuchao
  */
 @Data
+@AllArgsConstructor
 public class SessionData {
   private Employee user;
 }

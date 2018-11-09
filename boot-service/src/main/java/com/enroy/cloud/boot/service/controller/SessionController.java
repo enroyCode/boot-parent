@@ -10,7 +10,6 @@
 package com.enroy.cloud.boot.service.controller;
 
 import com.enroy.cloud.boot.api.biz.ActionResult;
-import com.enroy.cloud.boot.api.biz.employee.Employee;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
@@ -29,7 +28,6 @@ public class SessionController extends BaseController {
   @ApiOperation(value = "获取当前session", notes = "获取当前session")
   @PostMapping("session")
   public ActionResult<SessionData> getSession() throws Exception {
-    Employee currentUser = getCurrentUser();
-    return new ActionResult<SessionData>();
+    return new ActionResult<SessionData>(new SessionData(getCurrentUser()));
   }
 }
