@@ -21,7 +21,8 @@ public class AuthToken extends Token {
   private static final String KEY_EM_CODE = "emCo";
   /** 员工姓名 */
   private static final String KEY_EM_NAME = "emNa";
-
+  /** 商场 */
+  private static final String KEY_MART = "mart";
   /** 员工的权限 */
   private static final String KEY_PRMS = "prms";
 
@@ -47,6 +48,14 @@ public class AuthToken extends Token {
 
   public void setEmployName(String employName) {
     map.put(KEY_EM_NAME, employName);
+  }
+
+  public String getMart() {
+    return (String) map.get(KEY_MART);
+  }
+
+  public void setMart(String mart) {
+    map.put(KEY_MART, mart);
   }
 
   public List<String> getPermissions() {

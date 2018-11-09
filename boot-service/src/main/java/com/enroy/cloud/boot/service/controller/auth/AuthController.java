@@ -78,7 +78,7 @@ public class AuthController extends BaseController {
     authToken.setEmployee(employee.getUuid());
     authToken.setEmployCode(employee.getCode());
     authToken.setEmployName(employee.getName());
-
+    authToken.setMart(employee.getMart());
     //签发token
     tokenService.issue(request, response);
   }
