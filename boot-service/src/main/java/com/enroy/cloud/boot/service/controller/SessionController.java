@@ -11,6 +11,8 @@ package com.enroy.cloud.boot.service.controller;
 
 import com.enroy.cloud.boot.api.biz.ActionResult;
 import com.enroy.cloud.boot.api.biz.employee.Employee;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author zhuchao
  */
+@Api(tags = "获取当前session")
 @RestController
 @RequestMapping(value = "/*", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class SessionController extends BaseController {
 
+  @ApiOperation(value = "获取当前session", notes = "获取当前session")
   @PostMapping("session")
   public ActionResult<SessionData> getSession() throws Exception {
     Employee currentUser = getCurrentUser();
