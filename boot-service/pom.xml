@@ -133,13 +133,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot.version}</version>
-        <dependencies>
-          <!-- spring热部署 -->
-          <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>springloaded</artifactId>
-          </dependency>
-        </dependencies>
+        <!--<dependencies>-->
+          <!--&lt;!&ndash; spring热部署 &ndash;&gt;-->
+          <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>springloaded</artifactId>-->
+          <!--</dependency>-->
+        <!--</dependencies>-->
         <executions>
           <execution>
             <goals>
