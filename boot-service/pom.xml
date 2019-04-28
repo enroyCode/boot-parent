@@ -32,7 +32,10 @@
       <artifactId>boot-core</artifactId>
       <version>${project.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+    </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -127,6 +130,7 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
     </dependency>
+    <!--http-->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
