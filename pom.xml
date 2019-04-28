@@ -58,6 +58,7 @@
     <commons-lang3>3.6</commons-lang3>
     <lombok.version>1.16.20</lombok.version>
     <fastjson>1.2.47</fastjson>
+    <httpclient.version>4.5.6</httpclient.version>
     <!--jwt-->
     <java-jwt.version>2.1.0</java-jwt.version>
   </properties>
@@ -172,7 +173,11 @@
         <artifactId>commons-lang3</artifactId>
         <version>${commons-lang3}</version>
       </dependency>
-
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+      </dependency>
       <!--json-->
       <dependency>
         <groupId>com.alibaba</groupId>
