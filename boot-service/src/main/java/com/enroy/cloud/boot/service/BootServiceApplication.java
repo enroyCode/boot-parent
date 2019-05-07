@@ -3,6 +3,8 @@ package com.enroy.cloud.boot.service;
 import com.enroy.cloud.boot.api.biz.token.TokenConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,7 +14,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -34,8 +38,13 @@ public class BootServiceApplication {
 
   @Bean
   public Docket swaggerDocket() {
-    return new Docket(DocumentationType.SWAGGER_2).select()
-            .apis(RequestHandlerSelectors.basePackage(getClass().getPackage().getName())).build();
+    return new Docket(DocumentationType.SWAGGER_2).apiInfo(buildApiInfo()).select()
+            .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+            .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
+  }
+
+  private ApiInfo buildApiInfo() {
+    return new ApiInfoBuilder().title("SpringBootDemo.API").version("1.0").build();
   }
 
   @Bean(TokenConfig.BEAN_ID)
