@@ -1,6 +1,6 @@
 package com.enroy.cloud.boot.service.http;
 
-import com.enroy.cloud.boot.service.utils.json.JsonUtil;
+import com.enroy.cloud.boot.commons.utils.json.JsonUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
