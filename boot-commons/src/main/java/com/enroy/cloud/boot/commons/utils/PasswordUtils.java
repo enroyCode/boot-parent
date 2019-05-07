@@ -7,7 +7,7 @@
  * 修改历史：
  * 2018/8/30 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.service.utils;
+package com.enroy.cloud.boot.commons.utils;
 
 /**
  * 密码加密工具类

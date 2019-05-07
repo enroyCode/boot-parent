@@ -1,6 +1,6 @@
-package com.enroy.cloud.boot.service.utils.json;
+package com.enroy.cloud.boot.commons.utils.json;
 
-import com.enroy.cloud.boot.service.utils.format.DateTimeFormat;
+import com.enroy.cloud.boot.commons.utils.format.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
