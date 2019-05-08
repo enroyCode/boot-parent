@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 
 /**
- * 忽略jwt的路径
+ * 忽略路径
  *
  * @author zhuchao
  */
