@@ -10,6 +10,7 @@
 package com.enroy.cloud.boot.service.filter.log;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -32,21 +33,46 @@ import java.util.Enumeration;
 @WebFilter(filterName = "logFilter", urlPatterns = "/*")
 @Component
 public class LogFilter extends OncePerRequestFilter {
+  private static final String UNKNOWN = "unknown";
+  private static final String SEPARATOR = ",";
+  private static final String TRACE_ID = "trace_id";
+
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
     LoggerHttpServletRequestWrapper requestWrapper = new LoggerHttpServletRequestWrapper(request);
     LoggerHttpServletResponseWrapper responseWrapper = new LoggerHttpServletResponseWrapper(response);
-    printRequest(requestWrapper);
+    String ipAddress = getIpAddress(request);
+    String url = request.getRequestURL().toString();
+    printRequest(requestWrapper, url, ipAddress);
     filterChain.doFilter(requestWrapper, responseWrapper);
-    printResponse(responseWrapper);
+    printResponse(responseWrapper, url, ipAddress);
   }
 
-  private void printRequest(LoggerHttpServletRequestWrapper request) {
+  private static String getIpAddress(HttpServletRequest request) {
+    String ip = request.getHeader("x-forwarded-for");
+    if (StringUtils.isBlank(ip) || UNKNOWN.equalsIgnoreCase(ip)) {
+      ip = request.getHeader("Proxy-Client-IP");
+    }
+    if (StringUtils.isBlank(ip) || UNKNOWN.equalsIgnoreCase(ip)) {
+      ip = request.getHeader("WL-Proxy-Client-IP");
+    }
+    if (StringUtils.isBlank(ip) || UNKNOWN.equalsIgnoreCase(ip)) {
+      ip = request.getRemoteAddr();
+    }
+    if (StringUtils.isNotBlank(ip) && ip.contains(SEPARATOR)) {
+      return ip.split(SEPARATOR)[0];
+    } else {
+      return ip;
+    }
+  }
+
+  private void printRequest(LoggerHttpServletRequestWrapper request, String url, String ipAddress) {
     StringBuilder sb = new StringBuilder();
     sb.append("\r\n===========================================================================\r\n");
     sb.append("request Message: " + "\r\n");
-    sb.append("trace_id: ").append(MDC.get("trace_id")).append("\r\n");
-    sb.append("path: ").append(request.getRequestURL()).append("\r\n");
+    sb.append("trace_id: ").append(MDC.get(TRACE_ID)).append("\r\n");
+    sb.append("url: ").append(url).append("\r\n");
+    sb.append("client_ip: ").append(ipAddress).append("\r\n");
     sb.append("headers: ").append(getHeaders(request)).append("\r\n");
     sb.append("queryString: ").append(request.getQueryString()).append("\r\n");
     if (request.getMethod().equals("POST")) {
@@ -56,13 +82,14 @@ public class LogFilter extends OncePerRequestFilter {
     log.info(sb.toString());
   }
 
-  private void printResponse(LoggerHttpServletResponseWrapper response) {
+  private void printResponse(LoggerHttpServletResponseWrapper response, String url, String ipAddress) {
     StringBuilder sb = new StringBuilder();
     sb.append("\r\n===========================================================================\r\n");
     sb.append("response Message: " + "\r\n");
-    sb.append("trace_id: ").append(response.getHeader("trace_id")).append("\r\n");
-//    sb.append("path: ").append(response.get()).append("\r\n");
-    sb.append("body: ").append(new String(response.getBody(), StandardCharsets.UTF_8));
+    sb.append("trace_id: ").append(response.getHeader(TRACE_ID)).append("\r\n");
+    sb.append("url: ").append(url).append("\r\n");
+    sb.append("client_ip: ").append(ipAddress).append("\r\n");
+    sb.append("body: ").append(new String(response.getBody(), StandardCharsets.UTF_8)).append("\r\n");
     sb.append("===========================================================================");
     log.info(sb.toString());
   }
