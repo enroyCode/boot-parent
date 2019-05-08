@@ -9,6 +9,8 @@
  */
 package com.enroy.cloud.boot.service.filter.log;
 
+import com.enroy.cloud.boot.api.service.checker.FilterUtils;
+
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +36,7 @@ public class LoggerHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
   public LoggerHttpServletRequestWrapper(HttpServletRequest request) throws IOException {
     super(request);
-    body = StreamUtils.readBytes(request.getInputStream());
+    body = FilterUtils.readBytes(request.getInputStream());
   }
 
   @Override

@@ -9,7 +9,7 @@
  */
 package com.enroy.cloud.boot.service.filter;
 
-import com.enroy.cloud.boot.api.service.token.TokenFilterChecker;
+import com.enroy.cloud.boot.api.service.checker.FilterChecker;
 import com.enroy.cloud.boot.api.service.token.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author zhuchao
@@ -61,13 +60,11 @@ public class TokenFilter implements Filter, ApplicationContextAware {
     } else {
       pathInfo = httpRequest.getRequestURI().replaceAll("//", "/");
     }
-    Map<String, TokenFilterChecker> checkers = applicationContext.getBeansOfType(TokenFilterChecker.class);
-    for (String key : checkers.keySet()) {
-      TokenFilterChecker checker = checkers.get(key);
-      if (checker.ignorePath(pathInfo)) {
-        chain.doFilter(request, response);
-        return;
-      }
+
+    FilterChecker checker = applicationContext.getBean(AuthTokenFilterChecker.BEAN_ID, FilterChecker.class);
+    if (checker != null && checker.ignorePath(pathInfo)) {
+      chain.doFilter(request, response);
+      return;
     }
 
     if (!httpRequest.getMethod().equals("OPTIONS")) {
@@ -82,9 +79,7 @@ public class TokenFilter implements Filter, ApplicationContextAware {
         httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
         return;
       }
-
-      for (String key : checkers.keySet()) {
-        TokenFilterChecker checker = checkers.get(key);
+      if (checker != null) {
         checker.check();
       }
     }

@@ -7,14 +7,14 @@
  * 修改历史：
  * 2018/8/29 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.api.service.token;
+package com.enroy.cloud.boot.api.service.checker;
 
 import javax.servlet.ServletException;
 
 /**
  * @author zhuchao
  */
-public interface TokenFilterChecker {
+public interface FilterChecker {
   /**
    * 是否忽略指定路径
    *

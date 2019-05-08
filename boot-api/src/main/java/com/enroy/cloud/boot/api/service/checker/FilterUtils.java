@@ -7,7 +7,7 @@
  * 修改历史：
  * 2019/5/8 - zhuchao - 创建。
  */
-package com.enroy.cloud.boot.service.filter.log;
+package com.enroy.cloud.boot.api.service.checker;
 
 import javax.servlet.ServletInputStream;
 import java.io.BufferedReader;
@@ -19,7 +19,12 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author zhuchao
  */
-public class StreamUtils {
+public class FilterUtils {
+  public static final String UNKNOWN = "unknown";
+  public static final String SEPARATOR = ",";
+  public static final String TRACE_ID = "trace_id";
+  public static final String CLIENT_IP = "client_ip";
+  
   public static String streamToString(InputStream inputStream) {
     try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
       StringBuilder builder = new StringBuilder();
